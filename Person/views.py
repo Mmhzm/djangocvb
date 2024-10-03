@@ -14,5 +14,11 @@ class Detailperson(DetailView):
     model=person   
     template_name='indexdetail.html'
 
+class Createperson(CreateView):
+    model=person
+    template_name='indexcreate.html'
+    fields=['name','family','age','national_id']
+
+
     
 

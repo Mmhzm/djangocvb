@@ -19,6 +19,12 @@ class Createperson(CreateView):
     template_name='indexcreate.html'
     fields=['name','family','age','national_id']
 
+class Updateperson(UpdateView):
+    model=person
+    template_name='indexupdate.html'
+    fields=['name','family','age','national_id']
+
+
 
     
 

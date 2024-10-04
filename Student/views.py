@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import studnet
 from .serializers import Serstudent
-from rest_framework.generics import GenericAPIView,CreateAPIView,DestroyAPIView,UpdateAPIView,ListAPIView
+from rest_framework.generics import GenericAPIView,CreateAPIView,DestroyAPIView,UpdateAPIView,ListAPIView,RetrieveAPIView
 # Create your views here.
 class showallstudent(APIView):
     def get(self,request):
@@ -46,3 +46,7 @@ class deletestudent(DestroyAPIView):
 class updatestudent(UpdateAPIView):
     queryset=studnet.objects.all()
     serializer_class=Serstudent
+class detailstudent(RetrieveAPIView):
+    queryset=studnet.objects.all()
+    serializer_class=Serstudent
+    

@@ -6,6 +6,9 @@ from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from .models import person
 from django.http import HttpResponse
 from django.urls import reverse_lazy
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
 
 # Create your views here.
 class Allperson(ListView):
@@ -72,7 +75,13 @@ class LOGOUT(View):
     
 
 
-
+class testapicbv(APIView):
+    def get(self,request):
+        x=request.query_params['name']
+        return Response({'status':x})
+    def post(self,request):
+        x=request.data['name']
+        return Response({'status':x})
 
     
 

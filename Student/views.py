@@ -23,3 +23,11 @@ class showallstudent(APIView):
         else:
             return Response({'message':'your method is post and your are not login.'})
         
+class logoutToken(APIView):
+    def get(self,request):
+        if request.user.is_authenticated:
+            request.user.auth_token.delete()
+            return Response({'message':'logout ok!'})
+        else:
+            return Response({'message':'not login'})
+                

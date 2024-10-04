@@ -7,12 +7,19 @@ from .serializers import Serstudent
 class showallstudent(APIView):
     def get(self,request):
         if request.user.is_authenticated:
-            return Response({'message':'your method is get and you are login.'})
+            all_student=studnet.objects.all()
+            ser=Serstudent(all_student,many=True)
+            return Response({'message':ser.data})
         else:
             return Response({'message':'your metohd is get and you are not login.'})
     def post(self,request):
         if request.user.is_authenticated:
-            return Response({'message':'your method is post and you are login.'})
+            ser=Serstudent(data=request.data)
+            if not ser.is_valid():
+                return Response({'message':'your data isnt valid.'})
+            else:
+                ser.save()
+                return Response({'message':'your method is post and you are login.'})
         else:
             return Response({'message':'your method is post and your are not login.'})
         

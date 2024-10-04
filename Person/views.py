@@ -62,6 +62,14 @@ class Authuser(View):
             useruser=form.get_user()
             login(request,useruser)
             return HttpResponse('Auth Auth !!!!')
+        
+class LOGOUT(View):
+    def get(self,request):
+        logout(request)
+        return HttpResponse("this is Logout ^_^")
+    def post(self,requset):
+        return HttpResponse("Nothing.")
+    
 
 
 

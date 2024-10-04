@@ -6,6 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from .models import person
 from django.http import HttpResponse
 from django.urls import reverse_lazy
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -83,5 +84,4 @@ class testapicbv(APIView):
         x=request.data['name']
         return Response({'status':x})
 
-    
 

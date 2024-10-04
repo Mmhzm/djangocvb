@@ -3,6 +3,7 @@ from django.views.generic import CreateView,DetailView,DeleteView,ListView,Updat
 from django.contrib.auth import login,logout
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from .models import person
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -23,6 +24,12 @@ class Updateperson(UpdateView):
     model=person
     template_name='indexupdate.html'
     fields=['name','family','age','national_id']
+
+class Deleteperson(DeleteView):
+    model=person
+    success_url=reverse_lazy('all')
+    template_name='indexdelete.html'
+
 
 
 

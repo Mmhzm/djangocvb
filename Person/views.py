@@ -7,7 +7,6 @@ from .models import person
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 
-
 # Create your views here.
 class Allperson(ListView):
     model=person
@@ -47,6 +46,24 @@ class Createuser(View):
         else:
             form.save()
             return HttpResponse('Created successfully')
+        
+class Authuser(View):
+    def get(self,request):
+        form=AuthenticationForm()
+        context={'Form':form}
+        return render(request,'authuser.html',context)
+    def post(self,request):
+        form=AuthenticationForm(data=request.POST)
+        if not form.is_valid():
+            form=AuthenticationForm()
+            context={'Form':form}
+            return render(request,'authuser.html',context)
+        else:
+            useruser=form.get_user()
+            login(request,useruser)
+            return HttpResponse('Auth Auth !!!!')
+
+
 
 
     

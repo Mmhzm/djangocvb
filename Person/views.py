@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.views.generic import CreateView,DetailView,DeleteView,ListView,UpdateView
+from django.views import View
 from django.contrib.auth import login,logout
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from .models import person
+from django.http import HttpResponse
 from django.urls import reverse_lazy
 
 
@@ -31,6 +33,20 @@ class Deleteperson(DeleteView):
     template_name='indexdelete.html'
 
 
+class Createuser(View):
+    def get(self,request):
+        form=UserCreationForm()
+        context={'Form':form}
+        return render(request,'usercreate.html',context)    
+    def post(self,request):
+        form=UserCreationForm(request.POST)
+        if not form.is_valid():
+            form=UserCreationForm()
+            context={'Form':form}
+            return render(request,'usercreate.html',context)
+        else:
+            form.save()
+            return HttpResponse('Created successfully')
 
 
     

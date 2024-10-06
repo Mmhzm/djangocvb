@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'Person',
     'Student',
     'Book',
+    'Library',
+    
 
 
 ]
